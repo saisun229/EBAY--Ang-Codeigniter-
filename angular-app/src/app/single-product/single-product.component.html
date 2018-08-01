@@ -1,0 +1,115 @@
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <app-header-component></app-header-component>
+
+  <div class="container">
+    <!-- <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div> -->
+    <div class="col-md-12">
+      <div class="row">
+
+        <div class="white">
+          <h3>
+            <u> Product Details</u>
+          </h3>
+          <div [hidden]="buyClicked"  [hidden]="pdet.bid_status === 'sold'" ><button mat-raised-button color="primary"  [disabled]="pdet.bid_statusb == 'winner'" (click)="buy()" >Confirm BuyNow</button></div>
+          <div class="spacer-xs"></div>
+          <div class="  col-md-6" *ngIf="!buyClicked">
+            <img *ngIf="!pdet.item_image1 && !pdet.item_image2 && !pdet.item_image3" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" width="100%">
+            <img *ngIf="pdet.item_image1" src="{{pdet.item_image1}}" alt="Photo of a Shiba Inu" width="100%">
+            <img *ngIf="pdet.item_image2" src="{{pdet.item_image2}}" alt="Photo of a Shiba Inu" width="100%">
+            <img *ngIf="pdet.item_image3" src="{{pdet.item_image3}}" alt="Photo of a Shiba Inu" width="100%">
+          </div>
+          
+          <div class="  col-md-6"*ngIf="!buyClicked"  >
+            <p>Product Name :- {{pdet.title}}</p>
+            <p>Description :- {{pdet.description}}</p>
+            <p>Created Date :- {{pdet.date_updated | date:'dd - MM - yyyy'}}</p>
+            <p>Product Department :- {{pdet.department}}</p>
+            <p>Price : Rs. {{pdet.price}}</p> 
+            
+            <p>Mobile Number : {{pdet.mobile}}</p>
+            <p>Location :  {{pdet.area}} , {{pdet.city}},{{pdet.state}}</p>
+            <p *ngIf="!bidCompleted" [hidden]="pdet.bid_status === 'completed'"><countdown [text]="text" units="Month | Days | Hours | Minutes | Seconds"  [end]="date"></countdown></p>
+           <!-- <button *ngIf="pdet.flag && !user_data " mat-raised-button color="primary" (click)="navigate()">Login for Bidding</button>
+            <div *ngIf="pdet.flag && user_data && !bidCompleted && pdet.bid_status !== 'completed'">
+            -->
+            <button *ngIf=" !user_data " mat-raised-button color="primary" (click)="navigate()">Login for Bidding</button>
+            <div *ngIf="user_data && !bidCompleted && pdet.bid_status !== 'completed'">
+              <p>Min Bid : $ {{pdet.first_min_bid}}</p>
+              <p>Highest Bid : $ {{pdet.min_bid}}</p>
+              
+                <div style="width:250px;" [hidden]="bidStatus">
+                  <input type="number" class="form-control" placeholder="Enter amount" [(ngModel)]="pdet.minPrice">
+                </div>
+           <div class="spacer-xs"></div>
+              <p [hidden]="bidStatus">
+
+                <button mat-raised-button color="primary" (click)="bid(pdet.minPrice)">Bid</button>
+              </p>
+
+            </div>
+
+            <div *ngIf="pdet.bid_status === 'sold'">
+           <h4 class="text-danger">**Sorry! This product was Already purchased.</h4>
+
+            </div>
+                           
+          </div>
+          
+
+
+
+          <div class="container" *ngIf="buyClicked" >
+            <div class="row">
+              <div class="col-xs-6">
+                <h3>
+                  Purchase Confirmation
+                </h3>
+              </div>
+              <div class="col-xs-6">  
+            <table class="table table-bordered">
+             <thead><tr><th>Invoice</th></tr></thead>
+               
+              
+              <tbody>
+               
+                  <tr>
+                      <th>Invoice number</th>
+                      <td>{{pdet.id}}</td>
+                    </tr>
+                    <tr>
+                        <th>product Name</th>
+                        <td>{{pdet.title}}</td>
+                      </tr>
+                    
+                      <tr>
+                          <th>product Department</th>
+                          <td>{{pdet.department}}</td>
+                        </tr>
+                        <tr>
+                            <th>product Description</th>
+                            <td>{{pdet.description}}</td>
+                          </tr>
+                          <tr>
+                              <th>product Price</th>
+                              <td>{{pdet.price}}</td>
+                            </tr>
+              </tbody>
+              </table>
+              <button mat-raised-button color="primary" (click)="proceed()">Yes Proceed</button>
+              <button mat-raised-button color="primary" (click)="back()">No GoBack</button>
+          </div>
+          </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

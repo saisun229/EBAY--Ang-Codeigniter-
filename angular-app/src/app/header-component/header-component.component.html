@@ -1,0 +1,34 @@
+
+<header class="demo-header mdl-layout__header mdl-color--deep-purple-800 mdl-color-text--white">
+        <div class="container">
+    <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title" style="cursor:pointer;" (click)="navigateAllProducts()">AutoAuction</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <button mat-button (click)="openDialog()">Add Product</button>
+        </div>
+        <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+    <i class="material-icons">more_vert</i>
+  </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Sign Out</li>
+        </ul> -->
+        <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect logout-btn"  [matMenuTriggerFor]="menu"  color="warn" id="hdrbtn">
+          Logout
+        </button> -->
+        <button *ngIf="!user_data"  mat-button (click)="navigate()"> SignUp/SignOut</button>
+        <button *ngIf="user_data" mat-button [matMenuTriggerFor]="menu">Profile </button>
+        <mat-menu #menu="matMenu">
+               <mat-list role="list">
+                <mat-list-item style="cursor:pointer" role="listitem" routerLink="/my-products" >My Products</mat-list-item>
+                <mat-list-item style="cursor:pointer" role="listitem" routerLink="/my-bids" >My Bid Products</mat-list-item>
+                <mat-list-item style="cursor:pointer" role="listitem" routerLink="/my-history" >My history</mat-list-item>
+                <mat-list-item role="listitem" style="cursor:pointer" (click)="signOut()" >Logout</mat-list-item>
+                </mat-list>
+        </mat-menu>
+        <button mat-button routerLink="/contactus">ContactUs </button>
+    </div>
+</div>
+</header>

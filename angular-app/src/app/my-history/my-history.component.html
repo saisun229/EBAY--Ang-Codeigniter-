@@ -1,0 +1,246 @@
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <app-header-component></app-header-component>
+    <!-- <div class="demo-drawer mdl-layout__drawer mdl-color--deep-purple-700 mdl-color-text--white">
+        <header class="demo-drawer-header">
+            <span class="mdl-layout-title title"><img src="assets/Anurag-logo.png" alt="logo"></span>
+        </header>
+  
+        <app-sidebar></app-sidebar>
+    </div> -->
+    <!-- <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="main-container">
+  
+            <mat-card *ngFor="let lab of labs; let i = index" (click)="openDialog(i)" class="lab-cards animated fadeInLeft">{{product.LAB_NAME}}<br>{{lab.DEPARTMENT}}<br>{{lab.LAB_ROOM_NO}}
+                <br>{{lab.CAPCITY}} <br> Status: <span class="stat-available" *ngIf="lab.STATUS_ID == 1">Available!</span> <span class="stat-booked" *ngIf="lab.STATUS_ID == 2">Booked!</span>
+            </mat-card>
+        </div>
+    </main> -->
+    <div class="container"  fxLayout="row">
+        
+        <div class="col-md-10" flex="75%">
+            <!-- <h3 class="" style="color:#fff;">All Products</h3> -->
+            <div class="spacer-xs">
+
+               
+            </div>
+            <div>
+                
+                <form (ngSubmit)="onAddComment(f)" #f="ngForm">
+                    <div class="form-group">
+                  
+                    <label for="form_message" class="text-warning">enter the date to want to search from*</label>
+                    <input id="name" name="comment"  type="date" class="form-control" required="required" placeholder="enter date in format yyyy-mm-dd" ngModel>
+        
+                    </div>
+                <button class="btn btn-success" type="submit">Search</button>
+                <p>{{returned}}</p>
+          </form>
+               
+            </div>
+            <div class="spacer-xs">
+
+               
+              </div>
+  
+            <h3 class="" style="color:#fff;">My history</h3>
+            <p class="" style="color:#fff; cursor:pointer;" routerLink="/dashboard">view all Products</p>
+            <!--<div class="form-group search_field_width">
+                <input type="text" placeholder="Search for" class="form-control" [(ngModel)]="productFilter">
+            </div> -->
+            <div class="spacer-xs"></div>
+            <div class="row" >
+                <div class="col-md-4 img" *ngFor="let product of productList | filter: productFilter; let i = index" layout-gt-xs="row">
+                <div *ngIf= "check(this.product.date_updated)=='true'">
+                    <mat-card class="example-card">
+                        <img *ngIf="!product.product_image1 && !product.product_image2 && !product.product_image3" mat-card-image mat-card-image src="../../assets/no-image.png" alt="Photo of a Shiba Inu">
+                        <img *ngIf="product.product_image1" mat-card-image src="{{product.product_image1}}" alt="Photo of a Shiba Inu">
+                        <img *ngIf="product.product_image2" mat-card-image src="{{product.product_image2}}" alt="Photo of a Shiba Inu">
+                        <img *ngIf="product.product_image3" mat-card-image src="{{product.product_image3}}" alt="Photo of a Shiba Inu">
+                                        <mat-card-content>
+                                <div class="caption">
+                                    <p class="ptitle">{{product.product_name}}</p>
+                                    <!-- <span class="pDepart">{{product.department}},</span>
+                                    <span class="pCate">{{product.category}}</span>
+                                    <p class="pDesc price">{{product.description}}</p> -->
+                                    <!-- <p class="price"> : <span class="pprice">Rs. {{product.bid_amount}}</span></p> -->
+                                    <p class="price"> Bid: <span class="pprice">$ {{product.bid_amount}}</span></p>
+                                    <p class="bid"> Bid Status: <span class="pbid">{{product.bid_status}}</span></p>
+                                    <p class="bid"> why here?: <span class="pbid">you have bidded.</span></p>
+                                    <div class="button-row" layout="column" *ngIf="product.bid_status == 'active'">
+                                        <button class="button1" mat-raised-button color="primary" (click)="singleproduct(product, false)">BUY NOW</button>
+                                        <button class="button2" mat-raised-button color="accent" (click)="singleproduct(product, true)">BID NOW</button>
+                                    </div>
+                                    
+                                 
+      
+                                </div>
+                            </mat-card-content>
+  
+  
+                    </mat-card>
+                    </div>
+                </div>
+  
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- <div class="col-md-2">
+            <input type="text" placeholder="Search" [(ngModel)]="productFilter">
+            <app-sidebar></app-sidebar>
+        </div> -->
+        <div class="col-md-10">
+                
+          
+            <div class="row" >
+                <div class="col-md-4" *ngFor="let producty of productListing | filter: productFilter; let i = index">
+                  <div *ngIf= "check(this.producty.date_updated)=='true'">
+                    <mat-card class="example-card myproducts-card">
+
+                        <img *ngIf="!producty.item_image1 && !producty.item_image2 && !producty.item_image3"  mat-card-image src="../../assets/no-image.png" alt="Photo of a Shiba Inu">
+                        <img *ngIf="producty.item_image1" mat-card-image src="{{producty.item_image1}}" alt="Photo of a Shiba Inu">
+                        <img *ngIf="producty.item_image2" mat-card-image src="{{producty.item_image2}}" alt="Photo of a Shiba Inu">
+                        <img *ngIf="producty.item_image3" mat-card-image src="{{producty.item_image3}}" alt="Photo of a Shiba Inu">
+                                        <mat-card-content>
+                                <div class="caption">
+                                    <p class="pull-right" style="cursor:pointer;" (click)="delete_product (producty.id)"><img src="../../assets/rubbish-bin.png" width="20px;" class="delete-button-products" alt=""></p>
+                                    <p class="ptitle" >{{producty.title}}</p>
+                                    <p class="pull-right" style="cursor:pointer;" (click)="openDialog(producty)"><svg version="1.1"  id="Capa_update" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        x="0px" y="0px" viewBox="0 0 55.25 55.25" style="enable-background:new 0 0 55.25 55.25;width:15px" xml:space="preserve">
+                                        <path d="M52.618,2.631c-3.51-3.508-9.219-3.508-12.729,0L3.827,38.693C3.81,38.71,3.8,38.731,3.785,38.749
+                                                           c-0.021,0.024-0.039,0.05-0.058,0.076c-0.053,0.074-0.094,0.153-0.125,0.239c-0.009,0.026-0.022,0.049-0.029,0.075
+                                                           c-0.003,0.01-0.009,0.02-0.012,0.03l-3.535,14.85c-0.016,0.067-0.02,0.135-0.022,0.202C0.004,54.234,0,54.246,0,54.259
+                                                           c0.001,0.114,0.026,0.225,0.065,0.332c0.009,0.025,0.019,0.047,0.03,0.071c0.049,0.107,0.11,0.21,0.196,0.296
+                                                           c0.095,0.095,0.207,0.168,0.328,0.218c0.121,0.05,0.25,0.075,0.379,0.075c0.077,0,0.155-0.009,0.231-0.027l14.85-3.535
+                                                           c0.027-0.006,0.051-0.021,0.077-0.03c0.034-0.011,0.066-0.024,0.099-0.039c0.072-0.033,0.139-0.074,0.201-0.123
+                                                           c0.024-0.019,0.049-0.033,0.072-0.054c0.008-0.008,0.018-0.012,0.026-0.02l36.063-36.063C56.127,11.85,56.127,6.14,52.618,2.631z
+                                                            M51.204,4.045c2.488,2.489,2.7,6.397,0.65,9.137l-9.787-9.787C44.808,1.345,48.716,1.557,51.204,4.045z M46.254,18.895l-9.9-9.9
+                                                           l1.414-1.414l9.9,9.9L46.254,18.895z M4.961,50.288c-0.391-0.391-1.023-0.391-1.414,0L2.79,51.045l2.554-10.728l4.422-0.491
+                                                           l-0.569,5.122c-0.004,0.038,0.01,0.073,0.01,0.11c0,0.038-0.014,0.072-0.01,0.11c0.004,0.033,0.021,0.06,0.028,0.092
+                                                           c0.012,0.058,0.029,0.111,0.05,0.165c0.026,0.065,0.057,0.124,0.095,0.181c0.031,0.046,0.062,0.087,0.1,0.127
+                                                           c0.048,0.051,0.1,0.094,0.157,0.134c0.045,0.031,0.088,0.06,0.138,0.084C9.831,45.982,9.9,46,9.972,46.017
+                                                           c0.038,0.009,0.069,0.03,0.108,0.035c0.036,0.004,0.072,0.006,0.109,0.006c0,0,0.001,0,0.001,0c0,0,0.001,0,0.001,0h0.001
+                                                           c0,0,0.001,0,0.001,0c0.036,0,0.073-0.002,0.109-0.006l5.122-0.569l-0.491,4.422L4.204,52.459l0.757-0.757
+                                                           C5.351,51.312,5.351,50.679,4.961,50.288z M17.511,44.809L39.889,22.43c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0
+                                                           L16.097,43.395l-4.773,0.53l0.53-4.773l22.38-22.378c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0L10.44,37.738
+                                                           l-3.183,0.354L34.94,10.409l9.9,9.9L17.157,47.992L17.511,44.809z M49.082,16.067l-9.9-9.9l1.415-1.415l9.9,9.9L49.082,16.067z"
+                                        />
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                      </svg></p>
+                                   
+                                
+
+
+
+                                    
+                                    <span class="pDepart" class="font-weight-bold" class="text-primary">{{producty.department}}</span>
+    
+                                    <p class="pDesc price">Description: <span class="pbid">{{producty.description}}</span></p>
+                                    <p class="price"> Price: <span class="pprice">$ {{producty.price}}</span></p>
+                                    <p class="bid"> Highest Bid: <span class="pbid">$ {{producty.min_bid}}</span></p>
+                                    <p class="Bstatus">Bidding Status : <span class="Bstatus">{{producty.bid_status}} </span>
+                                      <p class="Bstatus">Why here? : <span class="Bstatus">You have added this product </span>
+                                    <button type="button" class="btn btn-primary" (click)="cancel_bid(producty)" >Cancel Auction</button></p>
+                                    <!-- <p class="Bstatus time">remaining time : <span class="Bstatus">140 mins.</span> <span class="" (click)="cancel_bid(product)" style="cursor:pointer;text-decoration:underline;">Cancel</span> </p> -->
+                                    <div *ngIf="producty.bid_list.length != 0 && producty.bid_status !=='completed'" >
+                                        <p class="Bidding-persons-head">Bidding Persons</p>
+                                        <table class="table" width="100%">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                            <tr *ngFor = 'let bidder of producty.bid_list; let j = index;'>
+                                                <td>{{bidder.name}}</td>
+                                                <td>&#8377; {{bidder.bid_amount}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div *ngIf="producty.bid_status ==='completed' && producty.winner_name" >
+                                        <p class="Bidding-persons-head">Winner</p>
+                                    
+                                        <table class="table" width="100%">
+                                            <tr>
+                                                <th>Name</th>
+                                                <td>{{product.winner_name}}</td>
+                                            </tr>
+                                            <tr>    
+                                                <th>Amount</th>
+                                                <td>{{product.winner_bid_amount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Mobile</th>
+                                                <td>{{product.winner_mobile}}</td>
+                                            </tr>
+                                            
+                                        </table>
+                                    </div>
+                                    <div *ngIf="producty.bid_status ==='completed' && !producty.winner_name">
+                                            <p class="Bidding-persons-head">No Winner</p>
+                                            
+                                                <table class="table" width="100%">
+                                                    <tr>
+                                                        <th>Result</th>
+                                                        <td>Nowinner</td>
+                                                    </tr>
+                                                    <tr>    
+                                                        <th>Comment</th>
+                                                        <td>NObids</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>feed back</th>
+                                                        <td>TryLessPrice</td>
+                                                    </tr>
+                                                    
+                                                </table>
+                                        
+                                    </div>
+      
+                                </div>
+
+
+                            </mat-card-content>
+
+
+                    </mat-card>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" *ngIf='productList.length==0' style="color:#fff;">
+                <p>You have not added any product !</p>
+            </div>
+        </div>
+    </div>
+  
+  
+  </div>
+  

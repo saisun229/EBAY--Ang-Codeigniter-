@@ -1,0 +1,116 @@
+<form class="form-horizontal" #addproduct="ngForm">
+    
+    
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="product_id">Title</label>
+            <div class="col-md-12">
+                <input id="product_id" [(ngModel)]="addproDetail.title" name="title" placeholder="Title" class="form-control" type="text">
+    
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="customer_name">Description</label>
+            <div class="col-md-12">
+                <input id="product_id" [(ngModel)]="addproDetail.description" name="title" placeholder="Description" class="form-control" type="text">
+    
+            </div>
+        </div>
+<!--     
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="customer_name">Department</label>
+            <div class="col-md-12">
+                <input id="product_id" [(ngModel)]="addproDetail.department" name="title" placeholder="Department" class="form-control" type="text">
+    
+            </div>
+        </div> -->
+
+        <div class="form-group">
+                <label class="col-md-12 control-label" for="categories">Categories</label>
+                <div class="col-md-12">
+                   <select name="product" id="" class="form-control" [(ngModel)]="addproDetail.department" >
+                       <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+                   </select>
+        
+                </div>
+            </div>
+    
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="quantity_purchased">Min Bid Amount</label>
+            <div class="col-md-12">
+                <input id="quantity_purchased" name="quantity_purchased" placeholder="Min bid" [(ngModel)]="addproDetail.min_bid" (keypress)="omit_special_char($event)" class="form-control input-md" required="" type="text">
+    
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="product_images1">Add Image1</label>
+            <div class="col-md-12">
+                <input id="product_images1" name="product_images1" class="form-control input-md"  accept="image/*" (change)="changeListener($event,0);" required="" type="file">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="product_images2">Add Image2</label>
+            <div class="col-md-12">
+                <input id="product_images2" name="product_images2" class="form-control input-md" (change)="handleFileInput($event.target.files,1);" required="" type="file">
+    
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="product_images3">Add Image3</label>
+            <div class="col-md-12">
+                <input id="product_images3" name="product_images3" class="form-control input-md" (change)="handleFileInput($event.target.files,3);" required="" type="file">
+    
+            </div>
+        </div>
+        <div class="form-group">
+                <label class="col-md-12 control-label" for="biddingtime">Time Interval (In Mins.)</label>
+                <div class="col-md-12">
+                    <input id="biddingtime" name="biddingtime" placeholder="Time Interval" [(ngModel)]="addproDetail.bid_time" (keypress)="omit_special_char($event)" class="form-control input-md" required="" type="text">
+        
+                </div>
+            </div>
+    
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="percentage_discount">Price</label>
+            <div class="col-md-12">
+                <input id="percentage_discount" [(ngModel)]="addproDetail.price" name="percentage_discount" placeholder="offered price" (keypress)="omit_special_char($event)" class="form-control input-md" required="" type="text">
+    
+            </div>
+        </div>
+        <div class="form-group">
+                <label class="col-md-12 control-label" for="sate">State</label>
+                <div class="col-md-12">
+                    <input id="sate"  name="sate" placeholder="State" class="form-control input-md" [(ngModel)]="addproDetail.state"  required="" type="text">
+        
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class="col-md-12 control-label" for="city">City</label>
+                    <div class="col-md-12">
+                        <input id="city"  name="city" placeholder="City" class="form-control input-md" [(ngModel)]="addproDetail.city" required="" type="text">
+            
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-md-12 control-label" for="area">Area</label>
+                        <div class="col-md-12">
+                            <input id="area"  name="area" placeholder="Area" class="form-control input-md" [(ngModel)]="addproDetail.area" required="" type="text">
+                
+                        </div>
+                    </div>
+    
+        <!-- Button -->
+        <div class="form-group">
+            <!-- <label class="col-md-12 control-label" for=""></label>
+            <div class="col-md-12">
+                <button class="btn btn-primary custom-button" [disabled]="!addproduct.form.valid" (click)="addproducts()">Submit</button>
+            </div> -->
+            <div class="col-md-12 text-center">
+            <button mat-raised-button color="primary" type="submit" (click)="addproducts() ; sendmail() " [disabled]="!addproduct.form.valid">
+            Post Submit
+        </button>
+        </div>
+        </div>
+    </form>

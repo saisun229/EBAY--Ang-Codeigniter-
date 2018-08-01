@@ -1,0 +1,64 @@
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <app-header-component></app-header-component>
+    <!-- <div class="demo-drawer mdl-layout__drawer mdl-color--deep-purple-700 mdl-color-text--white">
+        <header class="demo-drawer-header">
+            <span class="mdl-layout-title title"><img src="assets/Anurag-logo.png" alt="logo"></span>
+        </header>
+
+        <app-sidebar></app-sidebar>
+    </div> -->
+    <!-- <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="main-container">
+
+            <mat-card *ngFor="let lab of labs; let i = index" (click)="openDialog(i)" class="lab-cards animated fadeInLeft">{{product.LAB_NAME}}<br>{{lab.DEPARTMENT}}<br>{{lab.LAB_ROOM_NO}}
+                <br>{{lab.CAPCITY}} <br> Status: <span class="stat-available" *ngIf="lab.STATUS_ID == 1">Available!</span> <span class="stat-booked" *ngIf="lab.STATUS_ID == 2">Booked!</span>
+            </mat-card>
+        </div>
+    </main> -->
+    <div class="container">
+        <div class="col-md-2 position-sticky padding-left-0">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-10">
+            <!-- <h3 class="" style="color:#fff;">All Products</h3> -->
+            <div class="spacer-xs"></div>
+            <div class="form-group" style="width:250px;">
+                <input type="text" placeholder="Search for" class="form-control" [(ngModel)]="productFilter">
+            </div>
+            <div class="spacer-xs"></div>
+            <div class="row" >
+                <div class="col-md-4" *ngFor="let product of productList | filter: productFilter; let i = index">
+                    <mat-card class="example-card">
+                        <img *ngIf="!product.item_image1 && !product.item_image2 && !product.item_image3" mat-card-image src="../../assets/no-image.png" alt="Photo of a Shiba Inu">
+                        <img *ngIf="product.item_image1" mat-card-image src="{{product.item_image1}}" alt="Photo of a Shiba Inu">
+                        <img *ngIf="product.item_image2" mat-card-image src="{{product.item_image2}}" alt="Photo of a Shiba Inu">
+                        <img *ngIf="product.item_image3" mat-card-image src="{{product.item_image3}}" alt="Photo of a Shiba Inu">
+                                        <mat-card-content>
+                                <div class="caption">
+                                    <p class="ptitle" >{{product.title}}</p>
+                                    <span class="pDepart" class="font-weight-bold" class="text-primary">{{product.department}}</span>
+    
+                                    <p class="pDesc price">Description: <span class="pbid">{{product.description}}</span></p>
+                                    <p class="price">Price: <span class="pprice">$ {{product.price}}</span></p>
+                                    <p class="bid"> highest Bid: <span class="pbid">$ {{product.min_bid}}</span></p>
+                                    <p class="bid"> Min Bid: <span class="pbid">{{product.first_min_bid}}</span></p>
+                                    <p class="bid"> Bid Status: <span class="pbid">{{product.bid_status}}</span></p>
+                                    <div class="button-row">
+                                        <button mat-raised-button color="primary"  [disabled]="product.bid_statusb == 'winner' || product.user_id == this.user_data.id "   (click)="singleproduct(product, false)">BUY NOW</button>
+                                        <button [hidden]="product.bid_status !== 'active' || product.user_id == this.user_data.id "  mat-raised-button color="accent"   (click)="singleproduct(product, true)">BID NOW</button>
+                                    </div>
+                                    
+      
+                                </div>
+                            </mat-card-content>
+
+
+                    </mat-card>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

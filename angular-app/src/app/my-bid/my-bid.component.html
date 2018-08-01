@@ -1,0 +1,70 @@
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <app-header-component></app-header-component>
+  <!-- <div class="demo-drawer mdl-layout__drawer mdl-color--deep-purple-700 mdl-color-text--white">
+      <header class="demo-drawer-header">
+          <span class="mdl-layout-title title"><img src="assets/Anurag-logo.png" alt="logo"></span>
+      </header>
+
+      <app-sidebar></app-sidebar>
+  </div> -->
+  <!-- <main class="mdl-layout__content mdl-color--grey-100">
+      <div class="main-container">
+
+          <mat-card *ngFor="let lab of labs; let i = index" (click)="openDialog(i)" class="lab-cards animated fadeInLeft">{{product.LAB_NAME}}<br>{{lab.DEPARTMENT}}<br>{{lab.LAB_ROOM_NO}}
+              <br>{{lab.CAPCITY}} <br> Status: <span class="stat-available" *ngIf="lab.STATUS_ID == 1">Available!</span> <span class="stat-booked" *ngIf="lab.STATUS_ID == 2">Booked!</span>
+          </mat-card>
+      </div>
+  </main> -->
+  <div class="container"  fxLayout="row">
+      <div class="col-md-2 position-sticky padding-left-0" flex="25%">
+          <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-md-10" flex="75%">
+          <!-- <h3 class="" style="color:#fff;">All Products</h3> -->
+          <div class="spacer-xs"></div>
+
+          <h3 class="" style="color:#fff;">My Bid Products</h3>
+          <p class="" style="color:#fff; cursor:pointer;" routerLink="/dashboard">view all Products</p>
+          <!--<div class="form-group search_field_width">
+              <input type="text" placeholder="Search for" class="form-control" [(ngModel)]="productFilter">
+          </div> -->
+          <div class="spacer-xs"></div>
+          <div class="row" >
+              <div class="col-md-4 img" *ngFor="let product of productList | filter: productFilter; let i = index" layout-gt-xs="row">
+              
+                  <mat-card class="example-card">
+                      <img *ngIf="!product.product_image1 && !product.product_image2 && !product.product_image3" mat-card-image mat-card-image src="../../assets/no-image.png" alt="Photo of a Shiba Inu">
+                      <img *ngIf="product.product_image1" mat-card-image src="{{product.product_image1}}" alt="Photo of a Shiba Inu">
+                      <img *ngIf="product.product_image2" mat-card-image src="{{product.product_image2}}" alt="Photo of a Shiba Inu">
+                      <img *ngIf="product.product_image3" mat-card-image src="{{product.product_image3}}" alt="Photo of a Shiba Inu">
+                                      <mat-card-content>
+                              <div class="caption">
+                                  <p class="ptitle">{{product.product_name}}</p>
+                                  <!-- <span class="pDepart">{{product.department}},</span>
+                                  <span class="pCate">{{product.category}}</span>
+                                  <p class="pDesc price">{{product.description}}</p> -->
+                                  <!-- <p class="price"> : <span class="pprice">Rs. {{product.bid_amount}}</span></p> -->
+                                  <p class="price"> Bid: <span class="pprice">$ {{product.bid_amount}}</span></p>
+                                  <p class="bid"> Bid Status: <span class="pbid">{{product.bid_status}}</span></p>
+                          
+                                  <div class="button-row" layout="column" *ngIf="product.bid_status == 'active'">
+                                      <button class="button1" mat-raised-button color="primary" (click)="singleproduct(product, false)">BUY NOW</button>
+                                      <button class="button2" mat-raised-button color="accent" (click)="singleproduct(product, true)">BID NOW</button>
+                                  </div>
+                                  
+                               
+    
+                              </div>
+                          </mat-card-content>
+
+
+                  </mat-card>
+                  
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+
+</div>

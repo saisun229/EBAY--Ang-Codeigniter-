@@ -1,0 +1,38 @@
+<div class="login-page">
+    <div class="example-container animated slideInLeft">
+        <form class="example-form" novalidate (ngSubmit)="onSubmit()">
+            <span class="mdl-layout-title main-title">AutoAuction</span>
+            <h2>Login</h2>
+            <mat-form-field class="example-full-width">
+                <input matInput id="mobile" name="mobile" placeholder="mobile" type="mobile" class="example-left-align" [(ngModel)]="userDetails.mobile" #mobile="ngModel" required>
+                <div [hidden]="mobile.valid || mobile.pristine">
+                    Number is required
+                </div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput id="password" name="password" placeholder="PASSWORD" type="password" class="example-left-align" [(ngModel)]="userDetails.pswrd" #password="ngModel" required>
+                <div [hidden]="password.valid || password.pristine">
+                    Password is required
+                </div>
+            </mat-form-field>
+
+            <a href="" class="psd">Forget The Password?</a>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored login-btn">Login</button>
+            <mat-card-content>
+                <section class="example-section">
+                    <mat-checkbox class="example-margin" name="checked" [(ngModel)]="checked" [(indeterminate)]="indeterminate" [align]="align" [disabled]="disabled">
+                        Keep me logged-in
+                    </mat-checkbox>
+                </section>
+            </mat-card-content>
+        </form>
+        <form class="example-form form2_sign_Up_Button">
+            <a href="" class="example-content">New Here</a>
+
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored sign-btn" routerLink="/user-registration">Sign Up</button>
+       
+        </form>
+    </div>
+</div>

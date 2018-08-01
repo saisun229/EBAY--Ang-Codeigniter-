@@ -1,0 +1,29 @@
+<!-- <nav class="demo-navigation mdl-navigation mdl-color--deep-purple-400">
+    <h4>Dept.of.Computer <br> Science & Engineering</h4>
+    <a class="mdl-navigation__link" *ngIf="userData[0].ROLE_ID==1 || userData[0].ROLE_ID==2" routerLink="/dashboard"><i class="material-icons" role="presentation">dashboard</i>Dashboard</a>
+    <a class="mdl-navigation__link" routerLink="/time-table"><i class="material-icons" role="presentation">access_time</i>Time Table</a>
+    <a class="mdl-navigation__link" *ngIf="userData[0].ROLE_ID==1" routerLink="/student-details"><i class="material-icons" role="presentation">person</i>Student</a>
+    <a class="mdl-navigation__link" *ngIf="userData[0].ROLE_ID==1" routerLink="/faculty-details"><i class="material-icons" role="presentation">report</i>Faculty</a>
+    <a class="mdl-navigation__link" *ngIf="userData[0].ROLE_ID==1 || userData[0].ROLE_ID==2" routerLink="/book-lab"><i class="material-icons" role="presentation">access_time</i>Book Lab</a>
+
+    <div class="mdl-layout-spacer"></div>
+</nav> -->
+<!-- <mat-selection-list #shoes>
+    <mat-list-option *ngFor="let shoe of typesOfShoes">
+        {{shoe}}
+    </mat-list-option>
+</mat-selection-list> -->
+<h5 style="color:#fff;">Categories</h5>
+<mat-list class="categories" role="list">
+        <mat-list-item role="listitem" (click)="search('Cars')">Cars</mat-list-item>
+        <mat-list-item role="listitem" (click)="search('Mobiles')">Mobiles</mat-list-item>
+        <mat-list-item role="listitem" (click)="search('Bikes')">Bikes</mat-list-item>
+        <mat-list-item role="listitem" (click)="search('Books, sports')">Books, sports</mat-list-item>
+        <mat-list-item role="listitem" (click)="search('Pets')">Pets</mat-list-item>
+        <mat-list-item role="listitem" (click)="search('Job')">Job</mat-list-item>
+        <mat-list-item role="listitem" (click)="search('All')">Clear All</mat-list-item>
+      </mat-list>
+
+<!-- <p>
+    Options selected: {{shoes.selectedOptions.selected.length}}
+</p> -->

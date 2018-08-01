@@ -1,0 +1,64 @@
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <app-header-component></app-header-component>
+
+  <div class="container"  fxLayout="row">
+      <div class="col-md-2 position-sticky padding-left-0" flex="25%">
+          <app-sidebar></app-sidebar>
+      </div>
+
+<div>
+  <div class="container">
+    <!-- Container is the parent class -->
+       <div class="row" class="text-warning">
+         <div class="col-lg-8">
+           
+
+            
+            <h5>Submitted to professor: DR. Sam Ramanujan</h5><br/>
+<table class="table table-bordered">
+<thead>
+ <tr>
+   <th scope="col">FirstName</th>
+   <th scope="col">LastName</th>
+   <th scope="col">Student Id</th>
+ </tr>
+</thead>
+<tbody>
+ <tr>
+   
+   <td>Sai Krishna Reddy</td>
+   <td>Mudhiganti</td>
+   <td>700657837</td>
+ </tr>
+ <tr>
+  
+</tbody>
+</table>
+             
+           </div>
+           
+<div class="row">
+    <div class="col-md-6">
+        <form (ngSubmit)="onAddComment(f)" #f="ngForm">
+            <div class="form-group">
+          
+            <label for="form_message" class="text-warning">Message us for any issue  *</label>
+            <textarea id="name" name="comment" class="form-control" placeholder="Message for AutoAuction *" rows="4" required="required" data-error="Please,leave us a message." ngModel></textarea>
+
+            </div>
+        <button class="btn btn-success" type="submit">Submit Message</button>
+        <p>{{returned}}</p>
+  </form>
+</div>
+</div>
+           </div>
+         </div>
+</div>
+
+
+
+
+
+
+
+

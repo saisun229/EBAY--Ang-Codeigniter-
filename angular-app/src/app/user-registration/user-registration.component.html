@@ -1,0 +1,46 @@
+<div class="login-page">
+  <div class="example-container animated slideInRight">
+      <form class="example-form" novalidate (ngSubmit)="onSubmit()">
+          <span class="mdl-layout-title main-title" routerLink="/login">OLX</span>
+          <h2>Registration</h2>
+          <mat-form-field class="example-full-width">
+              <mat-icon matPrefix>person</mat-icon>
+              <input matInput placeholder="Name" type="text" id="name" pattern="[a-zA-Z][a-zA-Z ]+" [(ngModel)]="userDetail.name" name="name" class="example-left-align" #name="ngModel" required />
+              <div [hidden]="name.valid || name.pristine">
+                  <div [hidden]="!name.hasError('required')">Name is required</div>
+                  <div [hidden]="!name.hasError('pattern')">Only alphabets are allowed</div>
+              </div>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-icon matPrefix>lock</mat-icon>
+              <input matInput id="password" name="password" placeholder="Password" type="password" class="example-left-align" [(ngModel)]="userDetail.pswrd" #password="ngModel" required>
+              <div [hidden]="password.valid || password.pristine">
+                  Password is required
+              </div>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-icon matPrefix>email</mat-icon>
+              <input matInput placeholder="Email" type="email" id="email" class="example-left-align" [(ngModel)]="userDetail.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" required>
+              <div [hidden]="email.valid || email.pristine">
+                  <div [hidden]="!email.hasError('required')">Email is required</div>
+                  <div [hidden]="!email.hasError('pattern')">Email format should be <small><b>joe@abc.com</b></small></div>
+              </div>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <span matPrefix>+91 &nbsp;</span>
+              <input matInput type="text" [(ngModel)]="userDetail.mobile" name="mobile" placeholder="Mobile Number" id="mobile" pattern="[0-9]*" maxlength="10" minlength="10" #mobile="ngModel" required>
+              <div [hidden]="mobile.valid || mobile.pristine">
+                  <div [hidden]="!mobile.hasError('minlength')">Mobile should be 10digit</div>
+                  <div [hidden]="!mobile.hasError('required')">Mobile is required</div>
+                  <div [hidden]="!mobile.hasError('pattern')">Mobile number should be only numbers</div>
+              </div>
+          </mat-form-field>
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored login-btn">REGISTER</button>
+
+          <br>
+          <br><br>
+          <p class="text-right" style="cursor:pointer;"  routerLink="/Login">Login</p>
+        
+      </form>
+  </div>
+</div>
